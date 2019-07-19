@@ -29,7 +29,6 @@ function sendgrid($from,$to,$subject,$body,$html=true){
     }
 }
 function getSendgridEnvKey(){
-    inc('env');
     if(isset($_ENV['SENDGRID_KEY'])){
         return $_ENV['SENDGRID_KEY'];
     }else{
