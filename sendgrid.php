@@ -18,7 +18,7 @@ function sendgrid($from,$to,$subject,$body,$html=true){
         $sendgrid = new \SendGrid($sendgridKey);
         $response = $sendgrid->send($email);
         if($response->statusCode()==202){
-            return $response;
+            die(response->statusCode());
         }else{
             return false;
         }
