@@ -16,14 +16,20 @@ function sendgrid($from,$to,$subject,$body,$html=true){
     $sendgridKey=getSendgridEnvKey();
     if($sendgridKey){
         $sendgrid = new \SendGrid($sendgridKey);
-        try {
-            $response = $sendgrid->send($email);
-            print $response->statusCode() . "\n";
-            print_r($response->headers());
-            print $response->body() . "\n";
-        } catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        $response = $sendgrid->send($email);
+        if($response){
+            return $response;
+        }else{
+            return false;
         }
+        // try {
+        //
+        //     print $response->statusCode() . "\n";
+        //     print_r($response->headers());
+        //     print $response->body() . "\n";
+        // } catch (Exception $e) {
+        //     echo 'Caught exception: ',  $e->getMessage(), "\n";
+        // }
     }else{
         die('SENDGRID_KEY not found at .env');
     }
