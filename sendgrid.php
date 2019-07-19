@@ -18,18 +18,10 @@ function sendgrid($from,$to,$subject,$body,$html=true){
         $sendgrid = new \SendGrid($sendgridKey);
         $response = $sendgrid->send($email);
         if($response->statusCode()===202){
-            return $response;
+            return true;
         }else{
             return false;
         }
-        // try {
-        //
-        //     print $response->statusCode() . "\n";
-        //     print_r($response->headers());
-        //     print $response->body() . "\n";
-        // } catch (Exception $e) {
-        //     echo 'Caught exception: ',  $e->getMessage(), "\n";
-        // }
     }else{
         die('SENDGRID_KEY not found at .env');
     }
